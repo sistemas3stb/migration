@@ -1,0 +1,17 @@
+{
+    "name": "root/file-migration",
+    "description": "Migration",
+    "authors": [
+        {
+            "name": "Humberto",
+            "email": "sistemas3@starbox.com.co"
+        }
+    ],
+    "require": {},
+    "autoload": {
+    	"psr-4": {
+    	"app\\core\\": 	"class/",
+    	"app\\tasks\\": "tasks/"
+    	}
+    }
+}
