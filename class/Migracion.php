@@ -7,18 +7,17 @@ namespace app\core;
 class Migracion
 {
 	static private $connection;
+	static private $tasks = [];
 	static private $config;
 	
-	static public function init(){
+	public static function init(){
 		self::$connection = new Connection();
 
 		self::$config = self::loadConfig();
 
-		if(isset(self::$config['servers'])){
-			foreach (self::$config['servers'] as $key => $value) {
-				self::connection()->add($key,$value);
-			}
-		}
+		ConnectionLoader::load();
+
+		self::$tasks = TaskLoader::load();
 	}
 
 	private function loadConfig()
@@ -26,9 +25,28 @@ class Migracion
 		return require 'config.php';
 	}
 
-	static public function connection()
+	public static function connection()
 	{
 		return self::$connection;
+	}
+
+	public static function rootPath()
+	{
+		return dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
+	}
+
+	public static function path($path)
+	{
+		return self::rootPath() . $path;
+	}
+
+	public static function config($key)
+	{
+		if(isset(self::$config[$key])){
+			return self::$config[$key];
+		}
+
+		return false;
 	}
 
 }
