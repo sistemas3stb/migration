@@ -6,7 +6,7 @@ namespace app\core;
 */
 abstract class Server
 {
-	private $session;
+	protected $_session;
 	protected $_host;
 	protected $_port;
 
@@ -46,7 +46,8 @@ abstract class Server
 		{
 			return $this->{$property};
 		}
-		else return null;
+		
+		return null;
 	}
 }
 ?>
