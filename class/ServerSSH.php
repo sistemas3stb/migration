@@ -1,21 +1,17 @@
 <?php 
 namespace app\core;
 
+use SSHClient\ClientConfiguration\ClientConfiguration;
+use SSHClient\ClientBuilder\ClientBuilder;
+
 /**
 * ServerSSH
 */
 class ServerSSH extends Server
 {
-	CONST AUTH_NONE 	= 0x0F;
-	CONST AUTH_PASSWORD = 0x1F;
-	CONST AUTH_PUBKEY 	= 0x2F;
-	
-	protected $_method = ['hostkey'=>'ssh-rsa'];
+	protected $_options = [];
 	protected $_username;
-	protected $_typeauth ;
-	protected $_password;
-	protected $_pubkeyfile;
-	protected $_privatekeyfile;
+	protected $_privatekeyfile = '~/.ssh/id_rsa';
 
 	public function __construct($params)
 	{
@@ -24,16 +20,18 @@ class ServerSSH extends Server
 
 	public function connect()
 	{
-		$this->session = ssh2_connect($this->host,$this->port,$this->method);
+		$config = new ClientConfiguration($this->host, $this->username);
+		$this->options = array_merge($this->options,[
+			'Port'			=>$this->port,
+			'IdentitiesOnly'=> 'yes',
+			'IdentityFile'	=> $this->privatekeyfile
+			]
+		);
+		$config->setOptions($this->options);
 
-		if($this->session)
-		{
-			echo "Conectado a {$this->host}:{$this->port}\r\n";
-		}
-		else{
-			echo "[!] Error al conectar a {$this->host}:{$this->port}\r\n";
-		}
-	}	
+		$builder = new ClientBuilder($config);
+		$this->session = $builder->buildClient();
+	}
 }
 
 ?>
