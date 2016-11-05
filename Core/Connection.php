@@ -1,5 +1,5 @@
 <?php 
-namespace app\core;
+namespace Migration\Core;
 
 /**
 * Connection
@@ -11,7 +11,7 @@ class Connection
 	public function add($name,$params)
 	{
 		$protocol = $params['protocol'];
-		$class = "\\app\\core\\Server{$params['protocol']}";
+		$class = "\\Migration\\Core\\Server{$params['protocol']}";
 
 		if(class_exists($class))
 		{
@@ -23,6 +23,10 @@ class Connection
 		else{
 			throw new \Exception("El protocolo no es soportado", 1);
 		}
+	}
+
+	public function getAll(){
+		return $this->connections;
 	}	
 
 	public function __get($name)

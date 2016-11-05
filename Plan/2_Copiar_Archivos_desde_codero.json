@@ -1,0 +1,14 @@
+{
+	"title": "Copia Archivos desde el servidor de codero",
+	"items": [
+		{
+			"handler": "Scp",
+			"params": {
+				"comment": "Copia imagenes del back.",
+				"server": "codero",
+				"source": ["/tmp/imagenes/"],
+				"destination": "~/images/"
+			}
+		}
+	]
+}

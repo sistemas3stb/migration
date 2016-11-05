@@ -1,5 +1,5 @@
 <?php 
-namespace app\core;
+namespace Migration\Core;
 
 /**
 * Server
@@ -49,5 +49,7 @@ abstract class Server
 		
 		return null;
 	}
+
+	abstract public function ping();
 }
 ?>

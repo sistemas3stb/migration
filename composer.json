@@ -1,19 +1,18 @@
 {
-    "name": "root/file-migration",
+    "name": "migration/migration",
     "description": "Migration",
     "authors": [
         {
-            "name": "Humberto",
+            "name": "Humberto Monterrosa",
             "email": "sistemas3@starbox.com.co"
         }
     ],
-    "require": {
+    "require": {    
         "ssh-client/ssh-client": "^0.1.6"
     },
     "autoload": {
-    	"psr-4": {
-    	"app\\core\\": 	"class/",
-    	"app\\tasks\\": "tasks/"
-    	}
-    }
+        "psr-4": {
+            "Migration\\": ""
+        }
+    }   
 }

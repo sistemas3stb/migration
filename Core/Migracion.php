@@ -1,5 +1,5 @@
 <?php 
-namespace app\core;
+namespace Migration\Core;
 
 /**
 * Migracion
@@ -7,17 +7,27 @@ namespace app\core;
 class Migracion
 {
 	static private $connection;
-	static private $tasks = [];
+	static private $plans = [];
 	static private $config;
+	static public  $term_cols;
 	
 	public static function init(){
+		self::$term_cols = `tput cols`;
+
 		self::$connection = new Connection();
 
 		self::$config = self::loadConfig();
 
 		ConnectionLoader::load();
 
-		self::$tasks = TaskLoader::load();
+		self::$plans = PlanLoader::load();
+
+		new CommandLineInteractive(self::$plans);
+	}
+
+	public function getPlans()
+	{
+		return $this->plans;
 	}
 
 	private function loadConfig()

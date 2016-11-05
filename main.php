@@ -3,8 +3,13 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use app\core\Migracion;
+use Migration\Core\Migracion;
+use Migration\Core\CommandLineInteractive;
 
+try{
+	Migracion::init();
+}
+catch(Exception $e){
+	echo CommandLineInteractive::printError("Exception: ".$e->getMessage()."\r\n");
+}
 
-Migracion::init();
-print_r(Migracion::connection()->codero->connect());

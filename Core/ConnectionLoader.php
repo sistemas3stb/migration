@@ -1,5 +1,5 @@
 <?php 
-namespace app\core;
+namespace Migration\Core;
 
 /**
 * ConnectionLoader

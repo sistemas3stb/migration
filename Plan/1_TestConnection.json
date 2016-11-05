@@ -1,0 +1,11 @@
+{
+	"title": "Test de conexión de servidores",
+	"items": [
+		{
+			"handler": "TestConnection",
+			"params": {
+				"comment": "Test para verificar comunicación con servidores.Test para verificar comunicación con servidores.Test para verificar comunicación con servidores.Test para verificar comunicación con servidores."
+			}
+		}
+	]
+}
